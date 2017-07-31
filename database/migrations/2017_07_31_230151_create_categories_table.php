@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Carbon\Carbon;
 
-class AddFuckedTimeFieldToDummy extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,9 @@ class AddFuckedTimeFieldToDummy extends Migration
      */
     public function up()
     {
-        Schema::table('dummies', function (Blueprint $table) {
-            $table->timestamp('fucked_time')->default(Carbon::createFromTimestamp(1));
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
         });
     }
 
@@ -26,8 +26,6 @@ class AddFuckedTimeFieldToDummy extends Migration
      */
     public function down()
     {
-        Schema::table('dummies', function (Blueprint $table) {
-            $table->dropColumn('fucked_time');
-        });
+        Schema::dropIfExists('categories');
     }
 }

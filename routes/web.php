@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*Route::get('about', 'PagesController@about');
-Route::get('dummies', 'DummiesController@index');
-Route::get('dummies/create', 'DummiesController@create');
-Route::get('dummies/{id}', 'DummiesController@show');
-Route::post('dummies', 'DummiesController@store');*/
-
 Route::resource('dummies', 'DummiesController');
+
+Route::resource('records', 'RecordController');
 
 
 Auth::routes();

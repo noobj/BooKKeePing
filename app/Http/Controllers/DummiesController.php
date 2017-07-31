@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Dummy;
@@ -26,10 +25,8 @@ class DummiesController extends Controller
     	return view('dummies.index', compact('dummies'));
     }
 
-    public function show($id)
+    public function show(Dummy $dummy)
     {
-    	$dummy = Dummy::findOrFail($id);
-
     	return $dummy->body;
     }
 
@@ -40,11 +37,6 @@ class DummiesController extends Controller
 
     public function store(DummyRequest $request)
     {
-    	if(!Auth::user())
-    	{
-    		return 'you havnt logged in yet';
-    	}
-
     	$dummy = new Dummy($request->all());
 
     	Auth::user()->dummies()->save($dummy);
@@ -52,16 +44,13 @@ class DummiesController extends Controller
     	return redirect('dummies');
     }
 
-    public function edit($id)
+    public function edit(Dummy $dummy)
     {
-    	$dummy = Dummy::findOrFail($id);
-
     	return view('dummies.edit', compact('dummy'));
     }
 
-    public function update($id, DummyRequest $request)
+    public function update(Dummy $dummy, DummyRequest $request)
     {
-    	$dummy = Dummy::findOrFail($id);
     	$dummy->update($request->all());
 
     	return redirect('dummies');
