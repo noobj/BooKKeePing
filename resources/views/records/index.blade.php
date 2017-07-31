@@ -13,7 +13,8 @@ a{
 
 @forelse ($records as $record)
 	<article>
-		<h3> <a href="{{ url('/records', $record->id) }}">${{ $record->amount }} </a><span class="day">{{ $record->created_at }}</span></h3>
+		<h3> <span class="day">{{ $record->category->name }}</span><a href="{{ url('/records', $record->id) }}">${{ $record->amount }} </a><span class="day">{{ $record->created_at }}</span>
+		</h3>
 	</article>
 @empty
 	<h1>NO fucking record here</h1>
