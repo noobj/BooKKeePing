@@ -4,9 +4,16 @@
 </div>
 <br />
 	{!! Form::label('created_at', 'At:') !!}
-	{!! Form::input('date', 'created_at', date('Y-m-d')) !!}
+	@if (isset($record))
+		{!! Form::input('date', 'created_at') !!}
+	@else
+		{!! Form::input('date', 'created_at', date('Y-m-d')) !!}
+	@endif
+
+
 	{!! Form::hidden('category_id', '1') !!}
 <br />
 	{!! Form::label('memo', 'Memo:') !!}
 	{!! Form::input('text', 'memo') !!}
+<br />
 	{!! Form::submit($submitBtnText) !!}

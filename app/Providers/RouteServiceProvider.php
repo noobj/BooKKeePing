@@ -26,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('dummy', 'App\Dummy');
+        Route::model('record', 'App\Record');
     }
 
     /**

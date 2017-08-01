@@ -38,4 +38,14 @@ class RecordController extends Controller
 
     	return redirect('records');
     }
+
+    public function show(Record $record)
+    {
+        return view('records.show', compact('record'));
+    }
+
+    public function edit(Record $record)
+    {
+        return view('records.edit', compact('record'));
+    }
 }

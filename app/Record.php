@@ -14,9 +14,10 @@ class Record extends Model
     		'memo'
     	];
 
-    public function setFuckedTimeAttribute($date)
+
+    public function getCreatedAtAttribute($date)
     {
-    	$this->attributes['created_at'] = \Carbon\Carbon::parse($date);
+        return \Carbon\Carbon::parse($date)->format('Y-m-d');
     }
 
     public function scopeCreatedAt($query)
