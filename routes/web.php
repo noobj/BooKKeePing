@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('records/{date}', 'RecordController@index')->where('date', '[0-9]{4}_[0-9]{2}_[0-9]{2}');
+
 Route::resource('dummies', 'DummiesController');
 
 Route::resource('records', 'RecordController');

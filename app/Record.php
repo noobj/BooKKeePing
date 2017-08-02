@@ -14,15 +14,20 @@ class Record extends Model
     		'memo'
     	];
 
-
+    /**
+     * get created at attribute
+     *
+     * @param timestamp $date
+     * @return \Carbon\Carbon
+     */
     public function getCreatedAtAttribute($date)
     {
         return \Carbon\Carbon::parse($date)->format('Y-m-d');
     }
 
-    public function scopeCreatedAt($query)
+    public function scopeToday($query)
     {
-    	$query->where('created_at', '<=', \Carbon\Carbon::now());
+    	$query->where('created_at', '=', \Carbon\Carbon::today());
     }
 
     public function user()

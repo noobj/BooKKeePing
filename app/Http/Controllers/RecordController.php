@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Record;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
@@ -18,11 +19,24 @@ class RecordController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    /**
+     * index controll
+     *
+     * @param string
+     * @return \Illuminate\Http\Response
+     */
+    public function index(string $date = 'today')
     {
-    	$records = Record::latest('created_at')->get();
+        $date = str_replace('_', '-', $date);
+        $date =  Carbon::parse($date);
+    	$records = Record::where('created_at', '=', $date)->get();
+        $sum = 0;
 
-    	return view('records.index', compact('records'));
+        foreach ($records as $record) {
+            $sum += $record->amount;
+        }
+
+    	return view('records.index', compact('records', 'sum', 'date'));
     }
 
     public function create()
@@ -35,6 +49,7 @@ class RecordController extends Controller
     	$record = new Record($request->all());
 
     	Auth::user()->records()->save($record);
+        session()->flash('flash_message', 'abc');
 
     	return redirect('records');
     }
@@ -44,6 +59,11 @@ class RecordController extends Controller
         return view('records.show', compact('record'));
     }
 
+    /**
+     * Description
+     * @param \App\Record $record
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Record $record)
     {
         return view('records.edit', compact('record'));

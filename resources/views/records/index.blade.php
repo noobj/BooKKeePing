@@ -7,9 +7,24 @@ a{
 	display: block;
 }
 
+
 </style>
+@extends('layouts.head')
+
+
+@section('content')
+
+<h1>You've spent ${{ $sum }}</h1>
 
 <h1>Records</h1>
+
+<div class="container">
+@if (session()->has('flash_message'))
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	{{ session('flash_message') }}
+</div>
+@endif
 
 @forelse ($records as $record)
 	<article>
@@ -21,3 +36,10 @@ a{
 @endforelse
 
 @include('errors.list')
+</div>
+
+@endsection
+
+<script type="text/javascript">
+	$('div.alert-success').delay(1000).fadeOut(500);
+</script>

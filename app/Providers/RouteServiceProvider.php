@@ -24,6 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+        Route::pattern('record', '[0-9]+');
 
         Route::model('dummy', 'App\Dummy');
         Route::model('record', 'App\Record');
