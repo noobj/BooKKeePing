@@ -39,33 +39,119 @@ class RecordController extends Controller
     	return view('records.index', compact('records', 'sum', 'date'));
     }
 
+    /**
+     * show create form
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-    	return view('records.create');
+        $tagList = \App\Tag::pluck('name', 'id');
+        $categoryList = \App\Category::pluck('name', 'id');
+
+        return view('records.create', compact('tagList', 'categoryList'));
     }
 
-    public function store(Request $request)
-    {
-    	$record = new Record($request->all());
-
-    	Auth::user()->records()->save($record);
-        session()->flash('flash_message', 'abc');
-
-    	return redirect('records');
-    }
-
+    /**
+     * show specific record
+     *
+     * @param Record $record
+     * @return \Illuminate\Http\Response
+     */
     public function show(Record $record)
     {
         return view('records.show', compact('record'));
     }
 
     /**
-     * Description
+     * Edit record
+     *
      * @param \App\Record $record
      * @return \Illuminate\Http\Response
      */
     public function edit(Record $record)
     {
-        return view('records.edit', compact('record'));
+        $tagList = \App\Tag::pluck('name', 'id');
+        $categoryList = \App\Category::pluck('name', 'id');
+
+        return view('records.edit', compact('record', 'tagList', 'categoryList'));
+    }
+
+    /**
+     * Add new category
+     *
+     * @param \App\Http\Requests\CategoryRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addCategory(\App\Http\Requests\CategoryRequest $request)
+    {
+        $category = new \App\Category($request->all());
+
+        $category->save();
+        session()->flash('flash_message', 'new category has been added');
+
+        return redirect('records');
+    }
+
+    /**
+     * update record
+     *
+     * @param Record $record
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Record $record, Request $request)
+    {
+        $record->update($request->all());
+
+        $this->syncTags($record, $request->input('tags'));
+
+        session()->flash('flash_message', 'record has been updated');
+
+        return redirect('records');
+    }
+
+    /**
+     * store new record
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        $this->createRecord($request);
+
+        session()->flash('flash_message', 'record has been stored');
+
+        return redirect('records');
+    }
+
+    /**
+     * create new record
+     *
+     * @param Request $request
+     * @return \App\Record
+     */
+    private function createRecord(Request $request)
+    {
+        $record = new Record($request->all());
+
+        Auth::user()->records()->save($record);
+        $record->tags()->attach($request->input('tags'));
+
+        return $record;
+    }
+
+    /**
+     * sync up the list of tags in the database
+     *
+     * @param Record $record
+     * @param array $tags
+     * @return \Illuminate\Http\Response
+     */
+    private function syncTags(Record $record, array $tags)
+    {
+        $record->tags()->sync($tags);
     }
 }
