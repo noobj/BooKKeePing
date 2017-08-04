@@ -46,7 +46,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        $tagList = \App\Tag::pluck('name', 'id');
+        $tagList = \App\Tag::pluck('name', 'name');
         $categoryList = \App\Category::pluck('name', 'id');
 
         return view('records.create', compact('tagList', 'categoryList'));
@@ -71,7 +71,7 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        $tagList = \App\Tag::pluck('name', 'id');
+        $tagList = \App\Tag::pluck('name', 'name');
         $categoryList = \App\Category::pluck('name', 'id');
 
         return view('records.edit', compact('record', 'tagList', 'categoryList'));
@@ -138,7 +138,8 @@ class RecordController extends Controller
         $record = new Record($request->all());
 
         Auth::user()->records()->save($record);
-        $record->tags()->attach($request->input('tags'));
+
+        $this->syncTags($record, $request->input('tags'));
 
         return $record;
     }
@@ -152,6 +153,18 @@ class RecordController extends Controller
      */
     private function syncTags(Record $record, array $tags)
     {
-        $record->tags()->sync($tags);
+        $tagList = [];
+        foreach ($tags as $tag) {
+            if(\App\Tag::where('name', '=', $tag)->exists()) {
+                $tag = \App\Tag::where('name', $tag)->first();
+                $tagList[] = $tag->id;
+            } else {
+                $tag = new \App\Tag(['name' => $tag]);
+                $tag->save();
+                $tagList[] = $tag->id;
+            }
+        }
+
+        $record->tags()->sync($tagList);
     }
 }

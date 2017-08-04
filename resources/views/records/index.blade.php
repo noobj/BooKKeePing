@@ -7,7 +7,6 @@ a{
 	display: block;
 }
 
-
 </style>
 @extends('layouts.head')
 

@@ -17,7 +17,7 @@
 
 <div class="form-group">
 	{!! Form::label('tags', 'Tags') !!}
-	{!! Form::select('tags[]', $tagList, null, ['class' => 'form-control', 'multiple']) !!}
+	{!! Form::select('tags[]', $tagList, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
 </div>
 <br />
 
@@ -30,3 +30,10 @@
 <div class="form-group">
 	{!! Form::submit($submitBtnText, ['class' => 'btn btn-primary']) !!}
 </div>
+
+<script type="text/javascript">
+	$('#tag_list').select2({
+		placeholder: 'Choose a tag',
+		tags: true
+	});
+</script>
