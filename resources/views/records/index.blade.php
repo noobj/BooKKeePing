@@ -56,3 +56,8 @@ a{
 <script type="text/javascript">
 	$('div.alert-success').delay(1000).fadeOut(500);
 </script>
+
+
+@php
+Debugbar::addMeasure('now', LARAVEL_START, microtime(true));
+@endphp

@@ -48,4 +48,9 @@ class Record extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function hello()
+    {
+        return 'hello';
+    }
 }

@@ -173,6 +173,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\ViewComposerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -230,6 +231,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
+        // Laravel Debugbar
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
