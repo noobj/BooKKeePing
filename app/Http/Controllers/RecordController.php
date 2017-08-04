@@ -104,7 +104,9 @@ class RecordController extends Controller
     {
         $record->update($request->all());
 
-        $this->syncTags($record, $request->input('tags'));
+        if($request->input('tags')) {
+            $this->syncTags($record, $request->input('tags'));
+        }
 
         session()->flash('flash_message', 'record has been updated');
 
@@ -139,7 +141,9 @@ class RecordController extends Controller
 
         Auth::user()->records()->save($record);
 
-        $this->syncTags($record, $request->input('tags'));
+        if($request->input('tags')) {
+            $this->syncTags($record, $request->input('tags'));
+        }
 
         return $record;
     }

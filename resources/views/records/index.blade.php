@@ -7,6 +7,12 @@ a{
 	display: block;
 }
 
+a.arrow{
+	font-size: 30px;
+	font-weight: bold;
+	color: #ccc;
+}
+
 </style>
 @extends('layouts.head')
 
@@ -15,15 +21,11 @@ a{
 
 <div class="container">
 
-<a href="{{ url('/records', $date->subDay()->format('Y_m_d')) }}"><</a>
+<a href="{{ url('/records', $date->subDay()->format('Y_m_d'))  }}" class="arrow"><span class="glyphicon glyphicon-chevron-left"></span></a>
 
 <h1 style='display:inline'>{{ $date->addDay()->format('Y/m/d') }}</h1>
 
-<a href="{{ url('/records', $date->addDay()->format('Y_m_d')) }}">></a>
-
-<h1 style='display:inline'><a href="{{ url('/records/setting') }}">Setting</a></h1>
-
-<h1 style='display:inline'><a href="{{ url('/records/create') }}">Create</a></h1>
+<a href="{{ url('/records', $date->addDay()->format('Y_m_d')) }}" class="arrow"><span class="glyphicon glyphicon-chevron-right"></span></a>
 
 @if (session()->has('flash_message'))
 <div class="alert alert-success">
