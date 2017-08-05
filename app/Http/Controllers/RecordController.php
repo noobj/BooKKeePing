@@ -36,7 +36,10 @@ class RecordController extends Controller
             $sum += $record->amount;
         }
 
-    	return view('records.index', compact('records', 'sum', 'date'));
+        $tagList = \App\Tag::pluck('name', 'name');
+        $categoryList = \App\Category::pluck('name', 'id');
+
+    	return view('records.index', compact('records', 'sum', 'date', 'tagList', 'categoryList'));
     }
 
     /**
