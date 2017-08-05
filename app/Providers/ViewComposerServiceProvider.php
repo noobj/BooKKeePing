@@ -22,7 +22,10 @@ class ViewComposerServiceProvider extends ServiceProvider
                 $sum += $record->amount;
             }
 
-            $view->with('sum', $sum);
+            $tagList = \App\Tag::pluck('name', 'name');
+            $categoryList = \App\Category::pluck('name', 'id');
+
+            $view->with(['sum' => $sum, 'tagList' => $tagList, 'categoryList' => $categoryList]);
         });
     }
 

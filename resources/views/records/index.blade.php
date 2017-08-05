@@ -4,7 +4,7 @@ a{
 }
 .day{
 	font-size: 12px;
-	display: block;
+	display: inline;
 }
 
 a.arrow{
@@ -43,7 +43,7 @@ a.arrow{
 @forelse ($records as $record)
 	<article>
 		<h3> <span class="day">{{ $record->category->name }}</span><a href="{{ url('/records', $record->id) }}">${{ $record->amount }} </a>
-		<span class="day">
+		<span class="glyphicon glyphicon-tags day">
 			@foreach($record->tags()->pluck('name')->toArray() as $tag)
 				{{ $tag }}
 			@endforeach
@@ -53,24 +53,15 @@ a.arrow{
 @empty
 	<h1>NO fucking record here</h1>
 @endforelse
+@unset ($record)
 
 @include('errors.list')
 
 
 
-<div id='create-form' hidden="true">
-@include('records.create')
-</div>
-
 </div>
 
 
-
-<script>
-	$("#create-form-btn").click(function() {
-		$("#create-form").slideToggle(500);
-	});
-</script>
 
 @endsection
 
