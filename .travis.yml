@@ -4,7 +4,10 @@ php:
   - 7.0
 
 install:
-  - composer install 
+  - composer install
+
+env:
+    - APP_KEY=base64:YuUZ7uNEJ2dmoX9531HAsWOH9yZ99sBHUVw1ejRsEk0=
 
 notifications:
   email:
