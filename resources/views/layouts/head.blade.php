@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 
-<title> BooKKeePing </title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
