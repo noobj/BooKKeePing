@@ -7,6 +7,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+
 <title> BooKKeePing </title>
 </head>
 
@@ -30,6 +31,28 @@
           	<li><a style='color: lightgreen'>${{ $sum }}</a></li>
             <li><a href="/records/setting"><span class="glyphicon glyphicon-cog"></span></a></li>
           </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
+            </li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
  </nav>
@@ -50,5 +73,7 @@
     $("#create-form").slideToggle(500);
   });
 </script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 
 @yield('content')
