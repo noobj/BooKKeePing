@@ -97,10 +97,10 @@ class RecordController extends Controller
      * update record
      *
      * @param Record $record
-     * @param Request $request
+     * @param \App\Http\Requests\RecordRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Record $record, Request $request)
+    public function update(Record $record, \App\Http\Requests\RecordRequest $request)
     {
         $record->update($request->all());
 
@@ -116,10 +116,10 @@ class RecordController extends Controller
     /**
      * store new record
      *
-     * @param Request $request
+     * @param \App\Http\Requests\RecordRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\RecordRequest $request)
     {
 
         $this->createRecord($request);
@@ -132,10 +132,10 @@ class RecordController extends Controller
     /**
      * create new record
      *
-     * @param Request $request
+     * @param \App\Http\Requests\RecordRequest $request
      * @return \App\Record
      */
-    private function createRecord(Request $request)
+    private function createRecord(\App\Http\Requests\RecordRequest $request)
     {
         $record = new Record($request->all());
 
