@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a, a:hover {
+  transition: 1.2s ease;
+  text-decoration: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+.fadeIn {
+  -moz-animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -moz-animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  font-family: 'Oswald';
+  background: #FCF6F4;
+}
+
+.wrap {
+  padding-top: 20vh;
+}
+
+.container-day {
+  text-align: center;
+  font-size: 5vmin;
+  line-height: 1;
+}
+
+.container-day article {
+  text-align: left;
+  padding: 10vh 0;
+  width: 100vw;
+  box-sizing: border-box;
+  font-size: 8vmin;
+  line-height: 1;
+}
+
+.container-day article h3 {
+  background: #DBE1F9;
+  padding: 5vh 5vw 0;
+}
+
+.container-day article h3:last-child {
+  padding-bottom: 10vh;
+}
+
+.container-day article h3 font {
+  color: #383D63;
+}
+
+.container-day article h3 a {
+  color: #A6B1E1;
+  padding-left: 1vw;
+  float: right;
+}
+
+.container-day .note {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.2);
+  padding: 20vh 0;
+}
+
+.box {
+  padding: 0 5vw;
+  display: inline-block;
+  width: 100vw;
+  box-sizing: border-box;
+  font-size: 10vmin;
+}
+
+.box h1 {
+  display: inline;
+  color: #383D63;
+  font-weight: bold;
+  position: relative;
+  padding-left: 30px;
+}
+
+.box h1:before {
+  content: '';
+  background: url('../images/calendar.svg') no-repeat;
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  left: 0;
+  margin-top: 5px;
+}
+
+.box .arrow {
+  color: #A6B1E1;
+}
+
+.box .arrow:hover {
+  color: #7678ED;
+}
+
+.box .arrow-left {
+  float: left;
+}
+
+.box .arrow-right {
+  float: right;
+}
+
+.total {
+  padding: 10vh 0;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.total h2 {
+  float: left;
+}
+
+.total span {
+  float: right;
+}
+
+.container-create {
+  font-size: 5vmin;
+  line-height: 1.5;
+}
+
+.container-create h1 {
+  font-size: 10vmin;
+  line-height: 2;
+}
+
+.container-create input, .container-create select {
+  width: 100%;
+  font-size: 5vmin;
+  line-height: 1.5;
+}
+
+.select2-selection--multiple .select2-search--inline .select2-search__field {
+  width: auto !important;
+}
+
+.btn-primary {
+  text-transform: uppercase;
+  background-color: #383D63;
+  border-color: #383D63;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+  color: #fff !important;
+}
