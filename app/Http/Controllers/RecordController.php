@@ -60,7 +60,9 @@ class RecordController extends Controller
      */
     public function show(Record $record)
     {
-        return view('records.show', compact('record'));
+        $records = [];
+        $records[] = $record;
+        return view('records.show', compact('records'));
     }
 
     /**

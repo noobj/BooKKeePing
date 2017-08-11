@@ -20,4 +20,9 @@ class Tag extends Model
     {
     	return $this->belongsToMany('App\Record');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

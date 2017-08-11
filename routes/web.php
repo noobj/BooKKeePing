@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('records/{date}', 'RecordController@index')->where('date', '[0-9]{4}_[0-9]{2}_[0-9]{2}');
 
+Route::get('records/tag/{tag}', 'TagController@index');
+
 Route::get('records/setting', function() {
 	return view('records.setting');
 });
