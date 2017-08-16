@@ -31,6 +31,11 @@
           <ul class="nav navbar-nav">
             <li><a id="create-form-btn"><span class='glyphicon glyphicon-plus'></span></a></li>
           </ul>
+
+          <ul class="nav navbar-nav">
+            <li><a href="/statistic"><span class='glyphicon glyphicon-stats'></span></a></li>
+          </ul>
+
           <ul class="nav navbar-nav navbar-right">
           	<li><a style='color: lightgreen'>${{ $sum }}</a></li>
             <li><a href="/records/setting"><span class="glyphicon glyphicon-cog"></span></a></li>

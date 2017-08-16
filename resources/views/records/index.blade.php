@@ -25,14 +25,7 @@
 @forelse ($records as $record)
 
 		<h3> <font>{{ $record->category->name }}</font>
-<!--
-		<span class="glyphicon glyphicon-tags day">
-			@foreach($record->tags()->pluck('name')->toArray() as $tag)
-				{{ $tag }}
-			@endforeach
-		</span>
-	-->
-		<a href="{{ url('/records', $record->id) }}">NT${{ $record->amount }} </a>
+		<a href="{{ url('/records', $record->id) }}">NT${{ number_format($record->amount) }} </a>
 		</h3>
 
 @empty

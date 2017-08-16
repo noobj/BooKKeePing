@@ -1,7 +1,7 @@
 @extends('layouts.head')
 
 @section('content')
-
+<br /><br /><br />
 <h1> setting </h1>
 {!! Form::open(['url' => 'records/add_category']) !!}
 <div class="form-group">

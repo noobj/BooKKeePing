@@ -32,9 +32,7 @@ class RecordController extends Controller
     	$records = Record::where('created_at', '=', $date)->get();
         $sum = 0;
 
-        foreach ($records as $record) {
-            $sum += $record->amount;
-        }
+        $sum = $records->sum('amount');
 
     	return view('records.index', compact('records', 'date', 'sum'));
     }
@@ -129,6 +127,46 @@ class RecordController extends Controller
         session()->flash('flash_message', 'record has been stored');
 
         return redirect('records');
+    }
+
+    /**
+     * statistic of certain period
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function statistic(Request $request)
+    {
+        $sum = 0;
+
+        if ($request->isMethod('get')) {
+            return view('records.statistic');
+        }
+
+        $date_begin =  Carbon::parse($request->input('date_begin'));
+        $date_end =  Carbon::parse($request->input('date_end'));
+        $records = Record::where([
+            ['created_at', '>=', $date_begin],
+            ['created_at', '<=', $date_end],
+        ])->get();
+
+        $sum = $records->sum('amount');
+
+        $recordsGroupByCategory = $records->groupBy('category_id');
+        $statDatas = [];
+
+        foreach ($recordsGroupByCategory as $category => $records)
+        {
+            $tmp = [];
+            $tmp['records'] = $records;
+            $tmp['name'] = \App\Category::find($category)->name;
+            $tmp['sum'] = $records->sum('amount');
+            $tmp['y'] = round($tmp['sum']/$sum*100, 1);
+
+            $statDatas[] = $tmp;
+        }
+
+        return view('records.statistic', compact('recordsGroupByCategory', 'sum', 'statDatas'));
     }
 
     /**

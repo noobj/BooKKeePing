@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RecordController@index')->name('home');
+
+Route::get('statistic', 'RecordController@statistic');
+Route::post('statistic', 'RecordController@statistic');
 
 Route::get('records/{date}', 'RecordController@index')->where('date', '[0-9]{4}_[0-9]{2}_[0-9]{2}');
 
@@ -32,4 +33,3 @@ Route::resource('records', 'RecordController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
