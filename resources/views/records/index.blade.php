@@ -38,7 +38,3 @@
 </body>
 @endsection
 
-
-@php
-Debugbar::addMeasure('now', LARAVEL_START, microtime(true));
-@endphp
