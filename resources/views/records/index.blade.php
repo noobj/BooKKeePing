@@ -1,6 +1,3 @@
-<style>
-</style>
-
 @extends('layouts.head')
 
 @section('content')
@@ -29,7 +26,7 @@
 		</h3>
 
 @empty
-	<p class="note">NO fucking record here</p>
+	<p class="note">NO record today</p>
 		</article>
 @endforelse
 @unset ($record)
