@@ -10,7 +10,7 @@
 <br />
 <div class="form-group">
 	{!! Form::label('avatar', 'File:') !!}
-	{!! Form::file('avatar', '', ['class' => 'form-control', 'required']) !!}
+	{!! Form::file('avatar', ['class' => 'form-control', 'required']) !!}
 </div>
 <br />
 	<div class="form-group">
